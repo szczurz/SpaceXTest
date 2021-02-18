@@ -11,4 +11,8 @@
     <string name="title_failure_updating_company">Failure updating company data</string>
     <string name="no_data">Cannot show data</string>
     <string name="menu_filter">Filter launches</string>
+    <string name="filter_reverse">Reverse order</string>
+    <string name="filter_all">All</string>
+    <string name="filter_only_success">Only successful</string>
+    <string name="filter_only_not_success">Only not successful</string>
 </resources>

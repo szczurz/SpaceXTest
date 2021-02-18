@@ -18,10 +18,10 @@ class FilterLaunchesDialogFragment: DialogFragment() {
         return (activity as MainActivity).let { mainActivity ->
             val map = mutableMapOf<String, FilterUpdate>()
                 .apply {
-                    put("reverse", FilterUpdate.ReverseOrder)
-                    put("all", FilterUpdate.All)
-                    put("only successful", FilterUpdate.OnlySuccess)
-                    put("only not successful", FilterUpdate.OnlyNotSuccess)
+                    put(getString(R.string.filter_reverse), FilterUpdate.ReverseOrder)
+                    put(getString(R.string.filter_all), FilterUpdate.All)
+                    put(getString(R.string.filter_only_success), FilterUpdate.OnlySuccess)
+                    put(getString(R.string.filter_only_not_success), FilterUpdate.OnlyNotSuccess)
                 }.toMap()
 
             val keys = map.keys.toTypedArray()
