@@ -1,0 +1,93 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "com.pkurkowski.spacextest"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
+
+    buildTypes {
+
+        debug {
+            minifyEnabled false
+            buildConfigField("String", "SPACE_X_API_URL", "\"https://api.spacexdata.com/v4/\"")
+            buildConfigField 'long', 'RELOAD_DELAY_LAUNCHES_SEC', '30'
+            buildConfigField 'long', 'RELOAD_DELAY_COMPANY_SEC', '60'
+        }
+
+        release {
+            minifyEnabled false
+            buildConfigField("String", "SPACE_X_API_URL", "\"https://api.spacexdata.com/v4/\"")
+            buildConfigField 'long', 'RELOAD_DELAY_LAUNCHES_SEC', '30'
+            buildConfigField 'long', 'RELOAD_DELAY_COMPANY_SEC', '60'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    final RX_JAVA= '2.2.10'
+    final RX_KOTLIN = '2.4.0'
+    final RX_ANDROID_VERSION = '2.1.1'
+    final ROOM_VERSION = "2.2.6"
+    final RETROFIT_VERSION = '2.9.0'
+
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+
+    implementation "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
+    implementation 'com.squareup.retrofit2:converter-moshi:2.4.0'
+    implementation 'com.squareup.moshi:moshi-kotlin:1.11.0'
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:1.11.0"
+    implementation 'com.squareup.moshi:moshi-adapters:1.11.0'
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$RETROFIT_VERSION"
+
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
+
+    implementation "androidx.room:room-runtime:$ROOM_VERSION"
+    kapt "androidx.room:room-compiler:$ROOM_VERSION"
+    implementation "androidx.room:room-ktx:$ROOM_VERSION"
+    implementation "androidx.room:room-rxjava2:$ROOM_VERSION"
+
+    implementation 'org.koin:koin-android:2.2.0'
+    implementation 'org.koin:koin-androidx-viewmodel:2.2.0'
+
+    implementation "io.reactivex.rxjava2:rxjava:$RX_JAVA"
+    implementation "io.reactivex.rxjava2:rxkotlin:$RX_KOTLIN"
+    implementation "io.reactivex.rxjava2:rxandroid:$RX_ANDROID_VERSION"
+
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+
+    implementation "com.jakewharton.timber:timber:4.7.1"
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}

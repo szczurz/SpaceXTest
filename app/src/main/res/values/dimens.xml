@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_big">14dp</dimen>
+    <dimen name="margin_standard">8dp</dimen>
+    <dimen name="margin_small">4dp</dimen>
+    <dimen name="icon_size">50dp</dimen>
+    <dimen name="company_text_height">80dp</dimen>
+
+</resources>

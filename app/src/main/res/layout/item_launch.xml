@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.pkurkowski.spacextest.presentation.TimeFormatter" />
+
+        <variable
+            name="launch"
+            type="com.pkurkowski.spacextest.domain.LaunchData" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_standard"
+        >
+
+        <ImageView
+            android:id="@+id/pathImage"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:padding="@dimen/margin_small"
+            />
+
+        <ImageView
+            android:id="@+id/statusImage"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:padding="@dimen/margin_standard"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/nameTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{launch.name}"
+            app:layout_constraintLeft_toRightOf="@+id/pathImage"
+            app:layout_constraintRight_toLeftOf="@+id/statusImage"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="@dimen/margin_big"
+            tools:text="name" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/dateTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{ @string/launch_item_date_time(TimeFormatter.INSTANCE.getDateString(launch.date), TimeFormatter.INSTANCE.getTimeString(launch.date))}"
+            app:layout_constraintLeft_toLeftOf="@+id/nameTextView"
+            app:layout_constraintRight_toLeftOf="@+id/statusImage"
+            app:layout_constraintTop_toBottomOf="@+id/nameTextView"
+            tools:text="date" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/rocketTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{ @string/launch_item_rocket(launch.rocketName, launch.rocketType)}"
+            app:layout_constraintLeft_toLeftOf="@+id/nameTextView"
+            app:layout_constraintRight_toLeftOf="@+id/statusImage"
+            app:layout_constraintTop_toBottomOf="@+id/dateTextView"
+            tools:text="rocket" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/sinceFromTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@+id/nameTextView"
+            app:layout_constraintRight_toLeftOf="@+id/statusImage"
+            app:layout_constraintTop_toBottomOf="@+id/rocketTextView"
+            tools:text="since or from" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
