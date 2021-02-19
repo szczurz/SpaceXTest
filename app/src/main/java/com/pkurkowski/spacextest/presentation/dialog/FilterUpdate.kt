@@ -5,6 +5,5 @@ sealed class FilterUpdate {
     object All: FilterUpdate()
     object OnlySuccess: FilterUpdate()
     object OnlyNotSuccess: FilterUpdate()
-//    object AllYears: FilterUpdate()
-//    data class OnlyYear(val year: Int): FilterUpdate()
+    data class OnlyYear(val year: Int): FilterUpdate()
 }

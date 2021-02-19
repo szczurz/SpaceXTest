@@ -15,6 +15,7 @@ import com.pkurkowski.spacextest.domain.LaunchData
 import com.pkurkowski.spacextest.domain.Response
 import com.pkurkowski.spacextest.presentation.adapter.LaunchesAdapter
 import com.pkurkowski.spacextest.presentation.dialog.FilterLaunchesDialogFragment
+import com.pkurkowski.spacextest.presentation.dialog.FilterSelectYearDialogFragment
 import com.pkurkowski.spacextest.presentation.dialog.FilterUpdate
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -34,7 +35,10 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = adapter
 
-        viewModel.launchData.observe(this, { updateLaunchData(it.data) })
+        viewModel.launchData.observe(this, {
+            updateLaunchData(it.data)
+            updateFilterDescription(it.filter)
+        })
         viewModel.companyData.observe(this, { updateCompanyData(it) })
 
     }
@@ -58,13 +62,21 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.action_filter) {
-            FilterLaunchesDialogFragment().show(supportFragmentManager, FilterLaunchesDialogFragment.TAG)
+            viewModel.launchData.value?.let {
+                FilterLaunchesDialogFragment.getInstance(it.filter)
+                    .show(supportFragmentManager, FilterLaunchesDialogFragment.TAG)
+            }
         }
         return true
     }
 
     fun filterUpdate(update: FilterUpdate) {
-            viewModel.filterUpdate(update)
+        viewModel.filterUpdate(update)
+    }
+
+    fun filterYearSelect() {
+        FilterSelectYearDialogFragment.getInstance()
+            .show(supportFragmentManager, FilterSelectYearDialogFragment.TAG)
     }
 
     private fun updateLaunchData(response: Response<List<LaunchData>>) {
@@ -81,6 +93,10 @@ class MainActivity : AppCompatActivity() {
                 showToast(R.string.title_failure_updating_launch_data)
             }
         }
+    }
+
+    private fun updateFilterDescription(filter: FilterData) {
+        binding.launchesFilter.text = filter.describtion(resources)
     }
 
     private fun updateCompanyData(response: Response<CompanyData>) {

@@ -11,8 +11,10 @@ object TimeFormatter {
 
     fun getDateString(date: Date): String = DateFormat.getDateInstance().format(date)
     fun getTimeString(date: Date): String = DateFormat.getTimeInstance().format(date)
+    fun getYear(date: Date): Int = Calendar.getInstance().also { it.time = date }.get(Calendar.YEAR)
 
-    fun getSinceFromText(date: Date, resources: Resources): String {
+
+    fun getSinceFromDate(date: Date, resources: Resources): String {
         val difference =
             TimeUnit.MILLISECONDS.toDays(date.time - Calendar.getInstance().timeInMillis)
         return if (difference > 0) {

@@ -46,7 +46,7 @@ class LaunchesAdapter : RecyclerView.Adapter<LaunchesAdapter.ViewHolder>() {
             )
 
             binding.sinceFromTextView.text =
-                TimeFormatter.getSinceFromText(launch.date, binding.root.resources)
+                TimeFormatter.getSinceFromDate(launch.date, binding.root.resources)
 
             Glide.with(binding.pathImage)
                 .load(launch.missionPathUrl)

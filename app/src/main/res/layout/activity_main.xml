@@ -34,13 +34,33 @@
         app:layout_constraintEnd_toEndOf="@+id/companyTextView"
         />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@id/launchesCaption"
+        app:layout_constraintBottom_toBottomOf="@id/launchesCaption"
+        android:background="?attr/colorPrimaryVariant"
+        />
+
     <TextView
         android:id="@+id/launchesCaption"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/companyTextView"
+        app:layout_constraintStart_toStartOf="parent"
         android:text="@string/title_launches"
         style="@style/Base.TextAppearance.AppCompat.Large.Caption"
+        />
+
+    <TextView
+        android:id="@+id/launchesFilter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/launchesCaption"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@+id/launchesCaption"
+        android:text="@string/title_launches"
+        style="@style/Base.TextAppearance.AppCompat.Small.Caption"
         />
 
     <androidx.recyclerview.widget.RecyclerView

@@ -108,6 +108,7 @@ class MainActivityViewModel(
                 FilterUpdate.OnlyNotSuccess -> FilterData.Success(false, current.order)
                 FilterUpdate.OnlySuccess -> FilterData.Success(true, current.order)
                 FilterUpdate.ReverseOrder -> current.reverse()
+                is FilterUpdate.OnlyYear -> FilterData.LaunchYear(update.year, current.order)
             }
         )
     }
